@@ -1,0 +1,26 @@
+Package: xgbtest
+Type: Package
+Version: 0.0.1
+Title: xgbtest
+Description:
+    This package provides a test for xgboost linking functionality.
+Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
+               email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre')))
+Imports:
+    utils,
+    methods,
+    stats
+Suggests:
+    testthat (>= 2.0.0),
+    knitr (>= 1.20),
+    roxygen2 (>= 6.1.0),
+    rmarkdown (>= 1.10),
+Depends:
+    R (>= 3.4.0),
+LinkingTo:
+    Rcpp (>= 0.12.19),
+    xgboost
+License: GPL-3
+LazyData: true
+VignetteBuilder: knitr
+RoxygenNote: 7.1.1

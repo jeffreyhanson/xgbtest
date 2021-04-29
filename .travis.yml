@@ -1,0 +1,34 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: r
+
+sudo: required
+
+dist: bionic
+
+warnings_are_errors: true
+
+r:
+  - release
+
+r_build_args: --no-build-vignettes
+
+os:
+  - linux
+
+before_install:
+  - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
+  - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
+
+install:
+  - R -e "install.packages('remotes'); suppressWarnings(remotes::install_deps(dependencies = TRUE))"
+  - R -e "install.packages(c('rmarkdown', 'testthat'))"
+  - mkdir -p ~/.R
+  - touch ~/.R/Makevars
+  - echo "CXX11FLAGS += -flto" >> ~/.R/Makevars
+  - echo "CPPFLAGS += -flto" >> ~/.R/Makevars
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
